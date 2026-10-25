@@ -1,0 +1,49 @@
+---
+import type { Section } from '../../../definition';
+import Heading from './Heading.astro';
+import { includes, linkValue, plans } from '../../data';
+// Every plan: its name, price and period, summary and what it includes; a
+// highlighted one stands out. Then the section's call to action.
+const { section, from } = Astro.props as {
+  section: Extract<Section, { type: 'pricing' }>;
+  from: string;
+};
+---
+
+{plans.length > 0 && (
+  <section class="container-page py-14">
+    <Heading section={section} />
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {plans.map((plan) => (
+        <article
+          class:list={[
+            'flex flex-col gap-4 rounded-3xl border p-6',
+            plan.emphasis === 'highlighted'
+              ? 'border-primary bg-primary text-primary-foreground'
+              : 'border-border bg-card',
+          ]}
+        >
+          <h3 class="text-xl font-semibold">{plan.name}</h3>
+          <p>
+            <span class="text-3xl font-semibold tracking-tight">
+              {plan.price}
+            </span>{' '}
+            <span class="opacity-80">{plan.period}</span>
+          </p>
+          <p class="opacity-80">{plan.summary}</p>
+          <ul class="flex flex-col gap-2 border-t border-current/20 pt-4">
+            {includes(plan.includes).map((item) => (
+              <li class="flex gap-2">
+                <span aria-hidden="true">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+    <a class="button mt-10" href={linkValue(from)(section.cta)}>
+      {section.ctaLabel}
+    </a>
+  </section>
+)}

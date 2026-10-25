@@ -1,0 +1,31 @@
+---
+import type { Showing } from '../../../definition';
+import Heading from './Heading.astro';
+import { releaseUrl, rootFrom, services, sizeOf } from '../../data';
+// Every service, as a card with its image.
+const { section, from } = Astro.props as { section: Showing; from: string };
+const base = rootFrom(from);
+---
+
+{services.length > 0 && (
+  <section class="container-page py-14">
+    <Heading section={section} />
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <article class="overflow-hidden rounded-3xl border border-border bg-card">
+          <img
+            class="aspect-[3/2] w-full object-cover"
+            src={releaseUrl(service.image.asset, base)}
+            alt={service.image.alt}
+            loading="lazy"
+            {...sizeOf(service.image.asset)}
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold">{service.name}</h3>
+            <p class="mt-2 text-muted-foreground">{service.summary}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)}

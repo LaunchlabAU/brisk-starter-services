@@ -1,0 +1,76 @@
+/* The site's stylesheet: Tailwind, scanning only the templates and data.ts
+ * (never public/, where a build stages uploads), and the colours as roles.
+ * Rebranding is the palette below; the markup names only roles
+ * (bg-background, text-primary). The scheme follows the reader's system,
+ * as a toggle would need a script. */
+@import 'tailwindcss' source(none);
+@source "../components";
+@source "../layouts";
+@source "../pages";
+@source "../data.ts";
+
+@theme inline {
+  --font-sans: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+}
+
+/* A fern green and a clay accent on warm paper; in the dark, the same on
+ * deep green. Text on each passes WCAG AA. */
+:root {
+  color-scheme: light dark;
+  --background: #fbfaf6;
+  --foreground: #1c2a21;
+  --surface: #f2f0e8;
+  --card: #ffffff;
+  --border: #e2ded2;
+  --muted-foreground: #556058;
+  --primary: #2f6b45;
+  --primary-foreground: #ffffff;
+  --accent: #a8522f;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #111813;
+    --foreground: #e8eee9;
+    --surface: #151d18;
+    --card: #19221c;
+    --border: #2b3830;
+    --muted-foreground: #a3b0a7;
+    --primary: #8fcca2;
+    --primary-foreground: #0f1a13;
+    --accent: #e8956f;
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    @apply border-border;
+  }
+  html {
+    scroll-padding-top: 5rem;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  .button {
+    @apply inline-block w-fit rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition-opacity hover:opacity-90;
+  }
+}

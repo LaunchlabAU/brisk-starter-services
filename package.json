@@ -1,0 +1,23 @@
+{
+  "name": "services-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "check": "brisk check",
+    "fmt": "brisk fmt"
+  },
+  "dependencies": {
+    "@briskcms/astro": "^0.3.0",
+    "@briskcms/kit": "^0.3.0",
+    "@fontsource-variable/instrument-sans": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.3",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.6.7"
+  },
+  "engines": {
+    "node": ">=22.23.4"
+  }
+}

@@ -1,0 +1,32 @@
+---
+import type { Post } from '../../schema';
+import { linkFrom, longDate, releaseUrl, rootFrom, sizeOf } from '../data';
+// A post as a card: its cover, headline, summary and date.
+const { post, from } = Astro.props as { post: Post; from: string };
+const href = linkFrom(from)({ post: post.slug });
+---
+
+<article class="overflow-hidden rounded-3xl border border-border bg-card">
+  <a href={href} class="block" tabindex="-1" aria-hidden="true">
+    <img
+      class="aspect-[3/2] w-full object-cover"
+      src={releaseUrl(post.cover.asset, rootFrom(from))}
+      alt={post.cover.alt}
+      loading="lazy"
+      {...sizeOf(post.cover.asset)}
+    />
+  </a>
+  <div class="flex flex-col gap-3 p-6">
+    <h2 class="text-xl font-semibold tracking-tight">
+      <a href={href} class="hover:underline">
+        {post.headline}
+      </a>
+    </h2>
+    <p class="text-muted-foreground">{post.summary}</p>
+    {post.publishedAt && (
+      <time class="text-sm text-muted-foreground" datetime={post.publishedAt}>
+        {longDate(post.publishedAt)}
+      </time>
+    )}
+  </div>
+</article>

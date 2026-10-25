@@ -1,0 +1,73 @@
+{
+  "format": 1,
+  "version": 1,
+  "order": {
+    "pages": [
+      "home",
+      "services",
+      "about",
+      "contact"
+    ]
+  },
+  "blog": {
+    "title": "News from Quillwood Gardens — seasonal notes and tips",
+    "description": "Seasonal notes from Quillwood Gardens: what to plant, when to prune and how to keep a Sydney garden going through summer."
+  },
+  "navigation": [
+    {
+      "page": "home"
+    },
+    {
+      "page": "services",
+      "label": "Services"
+    },
+    {
+      "page": "about",
+      "label": "About"
+    },
+    {
+      "blog": true,
+      "label": "News"
+    },
+    {
+      "page": "contact",
+      "label": "Contact"
+    }
+  ],
+  "settings": {
+    "name": "Quillwood Gardens",
+    "tagline": "Garden design and care in Sydney",
+    "summary": "Quillwood Gardens designs, plants and looks after gardens across Sydney, from small courtyards to family backyards.",
+    "phone": "+61255501234",
+    "email": "hello@example.com",
+    "address": {
+      "street": "12 Example Street",
+      "locality": "Sydney",
+      "region": "NSW",
+      "postcode": "2000",
+      "country": "AU"
+    },
+    "hours": [
+      {
+        "days": [
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday"
+        ],
+        "opens": "07:30",
+        "closes": "16:30"
+      },
+      {
+        "days": [
+          "saturday"
+        ],
+        "opens": "08:00",
+        "closes": "12:00"
+      }
+    ],
+    "hoursNote": "Closed on public holidays.",
+    "footer": "Looking after Sydney gardens since 2014."
+  }
+}

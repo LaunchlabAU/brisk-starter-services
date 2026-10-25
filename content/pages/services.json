@@ -1,0 +1,46 @@
+{
+  "title": "Our services — garden design, planting and care",
+  "description": "Garden design, planting and regular care from Quillwood Gardens, with prices for a consultation, a full design and each care visit.",
+  "sections": [
+    {
+      "id": "intro",
+      "type": "hero",
+      "heading": "From the first sketch to the weekly visit",
+      "body": "Choose the help you need: a plan to follow yourself, a garden planted for you, or regular care.",
+      "image": {
+        "asset": "gallery-backyard.svg",
+        "alt": "A backyard lawn with a tree and a timber bench"
+      },
+      "cta": {
+        "page": "contact"
+      },
+      "ctaLabel": "Ask for a quote"
+    },
+    {
+      "id": "services",
+      "type": "services",
+      "heading": "Our services",
+      "intro": "Each starts with a visit to your garden."
+    },
+    {
+      "id": "pricing",
+      "type": "pricing",
+      "heading": "Prices",
+      "intro": "Prices include GST. Planting is quoted once the design is agreed.",
+      "cta": {
+        "page": "contact"
+      },
+      "ctaLabel": "Book a consultation"
+    },
+    {
+      "id": "start",
+      "type": "call-to-action",
+      "heading": "Questions about a service?",
+      "body": "Email us a few photos of your garden and we’ll tell you where we would start.",
+      "action": {
+        "email": "hello@example.com"
+      },
+      "actionLabel": "Email us"
+    }
+  ]
+}

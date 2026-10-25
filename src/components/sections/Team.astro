@@ -1,0 +1,32 @@
+---
+import type { Showing } from '../../../definition';
+import Heading from './Heading.astro';
+import { releaseUrl, rootFrom, sizeOf, team } from '../../data';
+// Everyone in the team, with their photo, role and bio.
+const { section, from } = Astro.props as { section: Showing; from: string };
+const base = rootFrom(from);
+---
+
+{team.length > 0 && (
+  <section class="container-page py-14">
+    <Heading section={section} />
+    <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {team.map((person) => (
+        <article class="flex flex-col gap-4">
+          <img
+            class="aspect-square w-40 rounded-full object-cover"
+            src={releaseUrl(person.photo.asset, base)}
+            alt={person.photo.alt}
+            loading="lazy"
+            {...sizeOf(person.photo.asset)}
+          />
+          <div>
+            <h3 class="text-xl font-semibold">{person.name}</h3>
+            <p class="text-sm font-medium text-accent">{person.role}</p>
+            <p class="mt-2 text-muted-foreground">{person.bio}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)}

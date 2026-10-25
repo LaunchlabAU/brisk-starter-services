@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "maya",
+    "name": "Maya Collins",
+    "role": "Garden designer",
+    "bio": "Maya draws every Quillwood garden, and has spent twelve years learning what grows well in Sydney clay.",
+    "photo": {
+      "asset": "team-maya.svg",
+      "alt": "An illustrated portrait in a green shirt"
+    }
+  },
+  {
+    "slug": "sam",
+    "name": "Sam Okafor",
+    "role": "Head gardener",
+    "bio": "Sam leads the care team, and knows most of the gardens we look after by their roses.",
+    "photo": {
+      "asset": "team-sam.svg",
+      "alt": "An illustrated portrait in a rust shirt"
+    }
+  },
+  {
+    "slug": "lena",
+    "name": "Lena Ruiz",
+    "role": "Horticulturist",
+    "bio": "Lena chooses the plants, buys them from local nurseries and checks that they settle in.",
+    "photo": {
+      "asset": "team-lena.svg",
+      "alt": "An illustrated portrait in a blue shirt"
+    }
+  }
+]

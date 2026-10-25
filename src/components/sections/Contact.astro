@@ -1,0 +1,100 @@
+---
+import type { Showing } from '../../../definition';
+import Heading from './Heading.astro';
+import {
+  addressLines,
+  identity,
+  linkValue,
+  mapLink,
+  openingHours,
+  phoneText,
+  socialLinks,
+} from '../../data';
+// How to reach the business, from its settings: each detail where it is
+// given, and the address linked to a map.
+const { section, from } = Astro.props as { section: Showing; from: string };
+const linkTo = linkValue(from);
+const address = addressLines();
+const map = mapLink();
+const hours = openingHours();
+const social = socialLinks();
+const link = 'text-primary underline-offset-4 hover:underline';
+const any = Boolean(
+  identity.phone ||
+  identity.email ||
+  address.length ||
+  hours.length ||
+  identity.hoursNote ||
+  social.length,
+);
+---
+
+<section class="container-page py-14">
+  <Heading section={section} />
+  {any && (
+    <div class="mt-10 grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-6">
+      {(identity.phone || identity.email) && (
+        <div class="rounded-3xl border border-border bg-card p-6">
+          <h3 class="font-semibold">Call or email</h3>
+          <address class="mt-3 flex flex-col items-start gap-1 not-italic">
+            {identity.phone && (
+              <a class={link} href={linkTo({ phone: identity.phone })}>
+                {phoneText(identity.phone)}
+              </a>
+            )}
+            {identity.email && (
+              <a
+                class={`${link} break-all`}
+                href={linkTo({ email: identity.email })}
+              >
+                {identity.email}
+              </a>
+            )}
+          </address>
+        </div>
+      )}
+      {address.length > 0 && (
+        <div class="rounded-3xl border border-border bg-card p-6">
+          <h3 class="font-semibold">Find us</h3>
+          <address class="mt-3 not-italic text-muted-foreground">
+            {address.map((line) => (
+              <p>{line}</p>
+            ))}
+          </address>
+          <a class={`${link} mt-3 inline-block`} href={map}>
+            Open in Google Maps
+          </a>
+        </div>
+      )}
+      {(hours.length > 0 || identity.hoursNote) && (
+        <div class="rounded-3xl border border-border bg-card p-6">
+          <h3 class="font-semibold">Opening hours</h3>
+          <div class="mt-3 text-muted-foreground">
+            {hours.map((h) => (
+              <p>
+                {h.days}: {h.opens}–{h.closes}
+              </p>
+            ))}
+            {identity.hoursNote && (
+              <p class={hours.length > 0 ? 'mt-2' : undefined}>
+                {identity.hoursNote}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+      {social.length > 0 && (
+        <div class="rounded-3xl border border-border bg-card p-6">
+          <h3 class="font-semibold">Elsewhere</h3>
+          <div class="mt-3 flex flex-col items-start gap-1">
+            {social.map((s) => (
+              <a class={`${link} break-all`} href={s.url}>
+                {s.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )}
+</section>

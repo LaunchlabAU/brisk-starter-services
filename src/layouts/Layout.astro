@@ -1,0 +1,169 @@
+---
+import '@fontsource-variable/instrument-sans';
+import '../styles/global.css';
+import SiteHead from '@briskcms/astro/SiteHead.astro';
+import {
+  build,
+  data,
+  releaseUrl,
+  linkValue,
+  navigationLabel,
+  routeOf,
+  identity,
+  seo,
+  rootFrom,
+  sizeOf,
+  addressLines,
+  phoneText,
+} from '../data';
+// Every page: its head (search metadata, share image and structured data,
+// from the kit's SiteHead), the navigation, and the footer with the
+// business's name and details from its settings, where an editor gives
+// them.
+const { title, description, from, ogType, image, nodes, noindex } =
+  Astro.props as {
+    title: string;
+    description: string;
+    /** This page's route: a page slug, news/<slug>, or the news index. */
+    from: string;
+    ogType: 'website' | 'article';
+    image: { asset: string; alt: string };
+    /** This page's own structured data, beside the organisation and site. */
+    nodes: object[];
+    /** Kept out of search engines (an empty news index). */
+    noindex?: boolean;
+  };
+const base = rootFrom(from);
+const linkTo = linkValue(from);
+const address = addressLines();
+const navLink =
+  'rounded-full px-3 py-1.5 text-muted-foreground transition-colors hover:bg-surface hover:text-foreground aria-[current=page]:bg-primary aria-[current=page]:text-primary-foreground';
+---
+
+<!doctype html>
+<html lang={seo.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <SiteHead
+      build={build}
+      title={title}
+      description={description}
+      from={from}
+      ogType={ogType}
+      image={image}
+      nodes={nodes}
+      noindex={noindex}
+    />
+  </head>
+  <body class="bg-background font-sans text-foreground antialiased">
+    <a
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-card focus:px-4 focus:py-2"
+      href="#main"
+    >
+      Skip to content
+    </a>
+    <header class="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
+      <div class="container-page flex items-center justify-between gap-6 py-4">
+        <a
+          class="min-w-0 wrap-break-word text-xl font-semibold tracking-tight"
+          href={base}
+        >
+          {identity.logo ? (
+            <img
+              class="h-9 w-auto object-contain object-left"
+              src={releaseUrl(identity.logo.asset, base)}
+              alt={identity.logo.alt}
+              {...sizeOf(identity.logo.asset)}
+            />
+          ) : (
+            identity.name
+          )}
+        </a>
+        <nav
+          aria-label="Main navigation"
+          class="hidden shrink-0 flex-wrap gap-1 text-sm lg:flex"
+        >
+          {data.navigation.map((entry) => (
+            <a
+              class={navLink}
+              href={linkTo(entry)}
+              aria-current={routeOf(entry) === from ? 'page' : undefined}
+            >
+              {navigationLabel(entry)}
+            </a>
+          ))}
+        </nav>
+        <!-- The menu below wide screens: a disclosure, no script needed. -->
+        <details class="relative shrink-0 lg:hidden">
+          <summary class="cursor-pointer list-none rounded-full border border-border px-3 py-1.5 text-sm">
+            Menu
+          </summary>
+          <nav
+            aria-label="Main navigation"
+            class="absolute right-0 z-50 mt-2 flex min-w-48 flex-col gap-1 rounded-2xl border border-border bg-card p-2 text-sm shadow-lg"
+          >
+            {data.navigation.map((entry) => (
+              <a
+                class={navLink}
+                href={linkTo(entry)}
+                aria-current={routeOf(entry) === from ? 'page' : undefined}
+              >
+                {navigationLabel(entry)}
+              </a>
+            ))}
+          </nav>
+        </details>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="mt-20 border-t border-border bg-surface">
+      <div class="container-page grid gap-8 py-12 text-sm text-muted-foreground md:grid-cols-3">
+        <div>
+          <a class="text-lg font-semibold text-foreground" href={base}>
+            {identity.name}
+          </a>
+          {identity.tagline && <p class="mt-1">{identity.tagline}</p>}
+          <p class="mt-4">{identity.footer ?? identity.summary}</p>
+        </div>
+        {(identity.phone || identity.email || address.length > 0) && (
+          <address class="flex flex-col items-start gap-1 not-italic">
+            {identity.phone && (
+              <a
+                class="underline-offset-4 hover:underline"
+                href={linkTo({ phone: identity.phone })}
+              >
+                {phoneText(identity.phone)}
+              </a>
+            )}
+            {identity.email && (
+              <a
+                class="break-all underline-offset-4 hover:underline"
+                href={linkTo({ email: identity.email })}
+              >
+                {identity.email}
+              </a>
+            )}
+            {address.length > 0 && (
+              <p class="mt-2">
+                {address.map((line, i) => (
+                  <>
+                    {i > 0 && <br />}
+                    {line}
+                  </>
+                ))}
+              </p>
+            )}
+          </address>
+        )}
+        <div class="md:text-right">
+          <a class="underline-offset-4 hover:underline" href={`${base}rss.xml`}>
+            News feed
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

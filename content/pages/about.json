@@ -1,0 +1,38 @@
+{
+  "title": "About Quillwood Gardens — the people who look after your garden",
+  "description": "Meet the small team behind Quillwood Gardens, and see some of the courtyards, backyards and beds we have designed and planted.",
+  "sections": [
+    {
+      "id": "intro",
+      "type": "hero",
+      "heading": "A small team that knows Sydney gardens",
+      "body": "We started Quillwood to make gardens that suit the people who use them, and the climate they grow in.",
+      "image": {
+        "asset": "gallery-path.svg",
+        "alt": "A sandy path winding between shrubs and flowers"
+      },
+      "cta": {
+        "page": "services"
+      },
+      "ctaLabel": "See our services"
+    },
+    {
+      "id": "story",
+      "type": "text",
+      "heading": "How we work",
+      "body": "Every garden starts with a visit. We walk it with you, ask how you use it, and look at the soil, the light and what already grows well.\n\nThen we draw a plan, choose plants that suit, and either plant it for you or hand it over for you to build at your own pace."
+    },
+    {
+      "id": "team",
+      "type": "team",
+      "heading": "Our team",
+      "intro": "The people you’ll meet in your garden."
+    },
+    {
+      "id": "gallery",
+      "type": "gallery",
+      "heading": "Recent work",
+      "intro": "A few of the gardens we have designed and planted."
+    }
+  ]
+}

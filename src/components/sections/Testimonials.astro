@@ -1,0 +1,28 @@
+---
+import type { Showing } from '../../../definition';
+import Heading from './Heading.astro';
+import { testimonials } from '../../data';
+// Every testimonial: the quote, who said it and a short detail.
+const { section } = Astro.props as { section: Showing };
+---
+
+{testimonials.length > 0 && (
+  <section class="bg-surface py-14">
+    <div class="container-page">
+      <Heading section={section} />
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {testimonials.map((t) => (
+          <figure class="flex flex-col justify-between gap-6 rounded-3xl border border-border bg-card p-6">
+            <blockquote class="text-lg leading-relaxed">
+              <p>“{t.quote}”</p>
+            </blockquote>
+            <figcaption class="text-sm">
+              <span class="font-semibold">{t.name}</span>
+              <span class="block text-muted-foreground">{t.detail}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PostCard from './PostCard.astro';
+import { build, data, postPrefix, postsNewestFirst, siteImage } from '../data';
+// The news index at /<postPrefix>/: every post, newest first.
+const from = postPrefix;
+const posts = postsNewestFirst();
+const nodes = build.blogNodes();
+---
+
+<Layout
+  title={data.blog.title}
+  description={data.blog.description}
+  from={from}
+  ogType="website"
+  image={siteImage()}
+  nodes={nodes}
+  noindex={posts.length === 0}
+>
+  <section class="container-page py-14">
+    <h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
+      {data.blog.title.split(' — ')[0]}
+    </h1>
+    <p class="mt-4 max-w-2xl text-lg text-muted-foreground">
+      {data.blog.description}
+    </p>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {posts.map((post) => (
+        <PostCard post={post} from={from} />
+      ))}
+    </div>
+  </section>
+</Layout>

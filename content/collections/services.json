@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "garden-design",
+    "name": "Garden design",
+    "summary": "A plan for the whole garden, drawn with you: its layout, paths, planting and the way you’ll use it.",
+    "image": {
+      "asset": "service-design.svg",
+      "alt": "A garden plan drawn on paper, with a dotted path"
+    }
+  },
+  {
+    "slug": "planting",
+    "name": "Planting",
+    "summary": "Plants chosen for your soil, your light and your time, put in properly and watered in.",
+    "image": {
+      "asset": "service-planting.svg",
+      "alt": "Young flowering plants in a freshly dug bed"
+    }
+  },
+  {
+    "slug": "garden-care",
+    "name": "Garden care",
+    "summary": "Regular visits to prune, weed, feed and mow, so the garden keeps the shape it was planned for.",
+    "image": {
+      "asset": "service-care.svg",
+      "alt": "A mown, striped lawn between two rounded shrubs"
+    }
+  }
+]

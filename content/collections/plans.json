@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "consultation",
+    "name": "Consultation",
+    "price": "$150",
+    "period": "a visit",
+    "summary": "An hour in your garden with a designer, and a written list of what to do next.",
+    "includes": "A one-hour visit\nWritten recommendations\nA plant list for your conditions",
+    "emphasis": "standard"
+  },
+  {
+    "slug": "design",
+    "name": "Garden design",
+    "price": "From $1,200",
+    "period": "a design",
+    "summary": "A full plan for your garden, drawn with you, ready for us or anyone else to build.",
+    "includes": "A site visit and measure\nA scaled plan and planting list\nTwo rounds of changes",
+    "emphasis": "highlighted"
+  },
+  {
+    "slug": "care",
+    "name": "Garden care",
+    "price": "$95",
+    "period": "a visit",
+    "summary": "Regular visits, every week, fortnight or month, to keep the garden in shape.",
+    "includes": "Pruning and weeding\nFeeding and mulching\nMowing and edging",
+    "emphasis": "standard"
+  }
+]

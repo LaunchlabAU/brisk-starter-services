@@ -1,0 +1,30 @@
+---
+import type { Showing } from '../../../definition';
+import Heading from './Heading.astro';
+import { gallery, releaseUrl, rootFrom, sizeOf } from '../../data';
+// Every image in the gallery, with its caption.
+const { section, from } = Astro.props as { section: Showing; from: string };
+const base = rootFrom(from);
+---
+
+{gallery.length > 0 && (
+  <section class="container-page py-14">
+    <Heading section={section} />
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {gallery.map((item) => (
+        <figure>
+          <img
+            class="aspect-[3/2] w-full rounded-2xl object-cover"
+            src={releaseUrl(item.image.asset, base)}
+            alt={item.image.alt}
+            loading="lazy"
+            {...sizeOf(item.image.asset)}
+          />
+          <figcaption class="mt-2 text-sm text-muted-foreground">
+            {item.caption}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+)}

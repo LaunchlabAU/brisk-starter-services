@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "courtyard",
+    "image": {
+      "asset": "gallery-courtyard.svg",
+      "alt": "A paved courtyard with two planted terracotta boxes"
+    },
+    "caption": "A paved courtyard in Surry Hills, planted for shade."
+  },
+  {
+    "slug": "backyard",
+    "image": {
+      "asset": "gallery-backyard.svg",
+      "alt": "A backyard lawn with a tree and a timber bench"
+    },
+    "caption": "A family backyard in Lane Cove, with room to play."
+  },
+  {
+    "slug": "natives",
+    "image": {
+      "asset": "gallery-natives.svg",
+      "alt": "A bed of native grasses with small red flowers"
+    },
+    "caption": "Native grasses that need little water once settled."
+  },
+  {
+    "slug": "vegetables",
+    "image": {
+      "asset": "gallery-vegetables.svg",
+      "alt": "Two raised vegetable beds with seedlings"
+    },
+    "caption": "Raised vegetable beds, built to sitting height."
+  },
+  {
+    "slug": "path",
+    "image": {
+      "asset": "gallery-path.svg",
+      "alt": "A sandy path winding between shrubs and flowers"
+    },
+    "caption": "A sandstone path between flowering shrubs."
+  },
+  {
+    "slug": "pots",
+    "image": {
+      "asset": "gallery-pots.svg",
+      "alt": "A row of terracotta pots holding round shrubs"
+    },
+    "caption": "Potted shrubs for a north-facing balcony."
+  }
+]

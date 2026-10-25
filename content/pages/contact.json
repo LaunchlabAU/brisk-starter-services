@@ -1,0 +1,26 @@
+{
+  "title": "Contact Quillwood Gardens — book a visit or ask a question",
+  "description": "Call, email or visit Quillwood Gardens to book a consultation or ask about a garden. Our opening hours and address are here.",
+  "sections": [
+    {
+      "id": "intro",
+      "type": "hero",
+      "heading": "Talk to us about your garden",
+      "body": "Call or email us to book a consultation, or ask a question. We reply within a working day.",
+      "image": {
+        "asset": "gallery-courtyard.svg",
+        "alt": "A paved courtyard with two planted terracotta boxes"
+      },
+      "cta": {
+        "email": "hello@example.com"
+      },
+      "ctaLabel": "Email us"
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "heading": "Get in touch",
+      "intro": "Our office is open on weekdays and Saturday mornings."
+    }
+  ]
+}

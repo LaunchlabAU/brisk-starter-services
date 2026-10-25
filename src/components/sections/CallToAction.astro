@@ -1,0 +1,25 @@
+---
+import type { Section } from '../../../definition';
+import { linkValue } from '../../data';
+// A heading, a line of text and a button: to a page, an email address, a
+// phone number or another website. A static site sends no forms.
+const { section, from } = Astro.props as {
+  section: Extract<Section, { type: 'call-to-action' }>;
+  from: string;
+};
+---
+
+<section class="container-page py-14">
+  <div class="flex flex-col gap-6 rounded-3xl bg-primary p-8 text-primary-foreground md:flex-row md:items-center md:justify-between md:p-12">
+    <div class="max-w-xl">
+      <h2 class="text-3xl font-semibold tracking-tight">{section.heading}</h2>
+      <p class="mt-3 opacity-90">{section.body}</p>
+    </div>
+    <a
+      class="w-fit shrink-0 rounded-full bg-primary-foreground px-6 py-3 font-medium text-primary transition-opacity hover:opacity-90"
+      href={linkValue(from)(section.action)}
+    >
+      {section.actionLabel}
+    </a>
+  </div>
+</section>

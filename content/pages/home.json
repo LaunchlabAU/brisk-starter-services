@@ -1,0 +1,56 @@
+{
+  "title": "Quillwood Gardens — garden design and care in Sydney",
+  "description": "Quillwood Gardens designs, plants and looks after gardens across Sydney. See what we do, what it costs and how to book a visit.",
+  "faqs": [
+    {
+      "question": "Which suburbs do you work in?",
+      "answer": "Most of Sydney, from the Inner West to the Northern Beaches. Ask us if you are further out."
+    },
+    {
+      "question": "Do you look after gardens you didn’t design?",
+      "answer": "Yes. Most of the gardens we care for were planted by someone else."
+    },
+    {
+      "question": "How soon can you start?",
+      "answer": "A consultation is usually within two weeks, and a design takes about a month from the first visit."
+    }
+  ],
+  "sections": [
+    {
+      "id": "intro",
+      "type": "hero",
+      "heading": "Gardens planned for the way you live",
+      "body": "We design, plant and look after gardens across Sydney, from small courtyards to family backyards.",
+      "image": {
+        "asset": "garden-hero.svg",
+        "alt": "A garden of trees, shrubs and a sandy path under a low sun"
+      },
+      "cta": {
+        "page": "contact"
+      },
+      "ctaLabel": "Book a visit"
+    },
+    {
+      "id": "services",
+      "type": "services",
+      "heading": "What we do",
+      "intro": "Three ways we can help, on their own or together."
+    },
+    {
+      "id": "testimonials",
+      "type": "testimonials",
+      "heading": "What our clients say",
+      "intro": "A few words from gardens we design and look after."
+    },
+    {
+      "id": "start",
+      "type": "call-to-action",
+      "heading": "Not sure where to start?",
+      "body": "An hour in your garden with one of our designers is the easiest first step.",
+      "action": {
+        "phone": "+61255501234"
+      },
+      "actionLabel": "Call us"
+    }
+  ]
+}

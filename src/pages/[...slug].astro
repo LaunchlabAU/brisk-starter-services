@@ -1,0 +1,25 @@
+---
+import Entry from '../components/Entry.astro';
+import BlogIndex from '../components/BlogIndex.astro';
+import Moved from '@briskcms/astro/Moved.astro';
+import type { Page } from '../../schema';
+import { build } from '../data';
+// Pages, posts, the blog index and a page for each redirect's old address
+// (@briskcms/kit/build.js).
+export const getStaticPaths = () => build.staticPaths();
+const { page, from, post, to, index } = Astro.props as {
+  page?: Page;
+  from: string;
+  post?: boolean;
+  to?: string;
+  index?: boolean;
+};
+---
+
+{to ? (
+  <Moved build={build} from={from} to={to} />
+) : index ? (
+  <BlogIndex />
+) : (
+  <Entry page={page!} from={from} post={post} />
+)}

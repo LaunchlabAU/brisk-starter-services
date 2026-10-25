@@ -1,0 +1,17 @@
+---
+import type { Section } from '../../../definition';
+import { paragraphsOf } from '../../data';
+// A heading and plain text, a paragraph for each blank-line break.
+const { section } = Astro.props as {
+  section: Extract<Section, { type: 'text' }>;
+};
+---
+
+<section class="container-page py-14">
+  <div class="max-w-prose">
+    <h2 class="text-3xl font-semibold tracking-tight">{section.heading}</h2>
+    {paragraphsOf(section.body).map((p) => (
+      <p class="mt-4 text-lg leading-relaxed text-muted-foreground">{p}</p>
+    ))}
+  </div>
+</section>
