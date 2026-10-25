@@ -3,7 +3,8 @@ import type { Section } from '../../../definition';
 import Heading from './Heading.astro';
 import { includes, linkValue, plans } from '../../data';
 // Every plan: its name, price and period, summary and what it includes; a
-// highlighted one stands out. Then the section's call to action.
+// highlighted one stands out, marked Recommended in words as well as
+// colour. Then the section's call to action.
 const { section, from } = Astro.props as {
   section: Extract<Section, { type: 'pricing' }>;
   from: string;
@@ -23,7 +24,14 @@ const { section, from } = Astro.props as {
               : 'border-border bg-card',
           ]}
         >
-          <h3 class="text-xl font-semibold">{plan.name}</h3>
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="text-xl font-semibold">{plan.name}</h3>
+            {plan.emphasis === 'highlighted' && (
+              <p class="rounded-full border border-transparent bg-primary-foreground px-3 py-1 text-xs font-semibold text-primary">
+                Recommended
+              </p>
+            )}
+          </div>
           <p>
             <span class="text-3xl font-semibold tracking-tight">
               {plan.price}

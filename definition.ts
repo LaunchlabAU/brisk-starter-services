@@ -334,7 +334,7 @@ export const services: SiteDefinition = {
     plans: {
       label: 'Plans',
       description:
-        'Prices: each plan’s name, price and period, a summary and what it includes. A highlighted plan stands out.',
+        'Prices: each plan’s name, price and period, a summary and what it includes. A highlighted plan stands out, marked Recommended.',
       max: 6,
       fields: {
         name: f.text('Name', 40),
