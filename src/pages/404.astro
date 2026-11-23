@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { identity } from '../data';
+// What the site answers for an address it doesn't have. The build writes
+// it as 404.html, and Brisk's hosts serve it with status 404 at whatever
+// address was asked for, so its links lead from the site's root.
+---
+
+<Layout title={`Page not found — ${identity.name}`} notFound>
+  <section class="container-page py-24">
+    <h1 class="text-4xl font-semibold tracking-tight">Page not found</h1>
+    <p class="mt-4 max-w-prose text-muted-foreground">
+      There's no page at this address. It may have moved, or the link may
+      have a typo.
+    </p>
+    <a class="button mt-8" href="/">Go to the home page</a>
+  </section>
+</Layout>

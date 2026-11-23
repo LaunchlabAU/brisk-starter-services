@@ -17,24 +17,44 @@ import {
   phoneText,
 } from '../data';
 // Every page: its head (search metadata, share image and structured data,
-// from the kit's SiteHead), the navigation, and the footer with the
-// business's name and details from its settings, where an editor gives
-// them.
-const { title, description, from, ogType, image, nodes, noindex } =
-  Astro.props as {
-    title: string;
-    description: string;
-    /** This page's route: a page slug, news/<slug>, or the news index. */
-    from: string;
-    ogType: 'website' | 'article';
-    image: { asset: string; alt: string };
-    /** This page's own structured data, beside the organisation and site. */
-    nodes: object[];
-    /** Kept out of search engines (an empty news index). */
-    noindex?: boolean;
-  };
-const base = rootFrom(from);
-const linkTo = linkValue(from);
+// from the kit's SiteHead, and the favicon), the navigation, and the
+// footer with the business's name and details from its settings, where an
+// editor gives them.
+type Props =
+  | {
+      title: string;
+      description: string;
+      /** This page's route: a page slug, news/<slug>, or the news index. */
+      from: string;
+      ogType: 'website' | 'article';
+      image: { asset: string; alt: string };
+      /** This page's own structured data, beside the organisation and site. */
+      nodes: object[];
+      /** Kept out of search engines (an empty news index). */
+      noindex?: boolean;
+      notFound?: undefined;
+    }
+  | {
+      title: string;
+      /** The 404 page (src/pages/404.astro). */
+      notFound: true;
+    };
+const props = Astro.props as Props;
+const { title } = props;
+const from = props.notFound ? undefined : props.from;
+// The 404 page answers whatever address was asked for, so its links lead
+// from the site's root, not from where it stands.
+const fromRoot = (href: string) =>
+  href.startsWith('./') ? '/' + href.slice(2) : href;
+const base = from === undefined ? '/' : rootFrom(from);
+const linkTo: ReturnType<typeof linkValue> =
+  from === undefined
+    ? (value) => fromRoot(linkValue('home')(value))
+    : linkValue(from);
+// The entry for the page itself, marked as such; none on the 404 page,
+// where an entry to another website has no route either.
+const isCurrent = (entry: (typeof data.navigation)[number]) =>
+  from !== undefined && routeOf(entry) === from;
 const address = addressLines();
 const navLink =
   'rounded-full px-3 py-1.5 text-muted-foreground transition-colors hover:bg-surface hover:text-foreground aria-[current=page]:bg-primary aria-[current=page]:text-primary-foreground';
@@ -45,16 +65,28 @@ const navLink =
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <SiteHead
-      build={build}
-      title={title}
-      description={description}
-      from={from}
-      ogType={ogType}
-      image={image}
-      nodes={nodes}
-      noindex={noindex}
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={releaseUrl('favicon.svg', base)}
     />
+    {props.notFound ? (
+      <>
+        <title>{title}</title>
+        <meta name="robots" content="noindex" />
+      </>
+    ) : (
+      <SiteHead
+        build={build}
+        title={title}
+        description={props.description}
+        from={props.from}
+        ogType={props.ogType}
+        image={props.image}
+        nodes={props.nodes}
+        noindex={props.noindex}
+      />
+    )}
   </head>
   <body class="bg-background font-sans text-foreground antialiased">
     <a
@@ -88,7 +120,7 @@ const navLink =
             <a
               class={navLink}
               href={linkTo(entry)}
-              aria-current={routeOf(entry) === from ? 'page' : undefined}
+              aria-current={isCurrent(entry) ? 'page' : undefined}
             >
               {navigationLabel(entry)}
             </a>
@@ -107,7 +139,7 @@ const navLink =
               <a
                 class={navLink}
                 href={linkTo(entry)}
-                aria-current={routeOf(entry) === from ? 'page' : undefined}
+                aria-current={isCurrent(entry) ? 'page' : undefined}
               >
                 {navigationLabel(entry)}
               </a>

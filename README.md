@@ -13,6 +13,7 @@ npm run build    # BRISK_SITE_URL=https://… for its own address
 - `brisk.definition.ts` names the site’s definition (`definition.ts`): what the content may hold, its components and their fields, its pages and posts. The definition’s seed is the content a new site starts with; `content/` is the content the site has.
 - `content/` holds it: `site.json`, `authors.json`, a JSON file per page and collection, and a Markdown file per post. Brisk commits its own changes here; edit them here too, then `npm run check`.
 - Add an image with `npx --no-install brisk media add <image> --alt "<description>"`.
+- `public/favicon.svg` is the site’s icon. `src/pages/404.astro` is the page for an address the site doesn’t have: Brisk serves it with status 404 at that address, so its links lead from the site’s root.
 - `brisk.json` says what the pages may load from other sites, and which inline scripts may run: Brisk makes each page’s Content-Security-Policy from it. After `npm run build`, `npm run check` lists what the policy would stop.
 - It needs the Node `engines` in `package.json` names, or later.
 - Commit `package-lock.json`: the check workflow installs from it.
